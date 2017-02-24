@@ -500,9 +500,7 @@ cdef class _MemObjectProxy:
         try:
             return self.collection[address]
         except KeyError:
-            # TODO: What to do if the object isn't present? I think returning a
-            #       'no-such-object' proxy would be nicer than returning nothing
-            raise
+            return _MemObjectProxy_from_args(0, '<no-such-object>', 0, [])
 
     property c:
         """The list of children objects as objects (not references)."""
